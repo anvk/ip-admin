@@ -1,0 +1,55 @@
+{
+  "name": "ip-admin",
+  "version": "0.0.1",
+  "author": "",
+  "description": "A tool to manage IP subnets in your company.",
+  "contributors": [
+    {
+      "name": "Alexey Novak",
+      "email": "alexey.novak.mail@gmail.com"
+    },
+    {
+      "name": "Abdul Khan",
+      "email": "invalidred@gmail.com"
+    }
+  ],
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha --reporter spec test/*"
+  },
+  "directories": {
+    "test": "test",
+    "dist": "dist",
+    "src": "src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anvk/ip-admin.git"
+  },
+  "keywords": [
+    "ip",
+    "administration"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "flux": "^2.1.1",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "object-assign": "^4.0.1",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "toastr": "^2.1.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-open": "^1.0.0",
+    "browserify": "^11.2.0",
+    "vinyl-source-stream": "^1.1.0",
+    "reactify": "^1.1.1"
+  },
+  "engine": "node >= 0.10.x",
+  "private": false,
+  "license": "MIT"
+}
