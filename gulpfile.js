@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     reactify = require('reactify'), // Transforms React JSX to JS
     source = require('vinyl-source-stream'), // Use conventional text streams with Gulp
     concat = require('gulp-concat'), // concat files
+    less = require('gulp-less'), // for LESS files
     lint = require('gulp-eslint'); // to lint our files including jsx
 
 var config = {
@@ -16,7 +17,10 @@ var config = {
     html: './src/*.html',
     js: './src/**/*.js',
     images: './src/images/*',
+    less: './src/less/**/*.less',
+    componentsCss: './src/css/',
     css: [
+      './src/css/*.css',
       'node_modules/bootstrap/dist/css/bootstrap.min.css',
       'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
       'node_modules/toastr/toastr.scss'
@@ -61,6 +65,13 @@ gulp.task('js', function() {
     .pipe(connect.reload());  // reload browser
 });
 
+gulp.task('less', function () {
+  return gulp.src(config.paths.less)
+    .pipe(less())
+    .pipe(concat('components.css'))
+    .pipe(gulp.dest(config.paths.componentsCss));
+});
+
 gulp.task('css', function() {
   gulp.src(config.paths.css)
     .pipe(concat('bundle.css'))
@@ -86,6 +97,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
   gulp.watch(config.paths.html, ['html']);
   gulp.watch(config.paths.js, ['js', 'lint']);
+  gulp.watch(config.paths.less, ['less']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'images', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'less', 'css', 'images', 'lint', 'open', 'watch']);

@@ -28,3 +28,7 @@ node_modules
 
 # adding a compiled folder
 dist/
+
+# adding a compiled CSS folder from LESS
+
+src/css/

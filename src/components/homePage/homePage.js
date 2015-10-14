@@ -3,6 +3,10 @@
 var React = require('react');
 
 var Home = React.createClass({
+  componentWillMount: function() {
+
+  },
+
   render: function() {
     return (
       <div className="jumbotron">
