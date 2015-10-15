@@ -1,21 +1,23 @@
 'use strict';
 
-var data = require('stubData.js'),
+var data = require('./stubData.js'),
     _ = require('lodash');
 
 var mongoStub = {
-  login: function(username, password) {
+  login: function(args, callback) {
+    args = args || {};
+
     var result = _.findIndex(data.users, function(user) {
-      return user.username === username && user.password === password;
+      return user.email === args.email && user.password === args.password;
     });
 
     if (result >= 0) {
-      var token = data[result]._id; // just push userid into sessions for now
+      var token = data.users[result]._id; // just push userid into sessions for now
       data.sessions.push(token);
-      return token;
+      return callback(undefined, {token: token});
     }
 
-    return;
+    callback('not authorized');
   }
 };
 

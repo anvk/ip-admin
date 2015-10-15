@@ -1,10 +1,17 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    LoginStore = require('../../stores/loginStore.js');
 
 var Home = React.createClass({
-  componentWillMount: function() {
+  statics: {
+    willTransitionTo: function(transition, params, query, callback) {
+      if (!LoginStore.isLoggedIn()) {
+        transition.redirect('login');
+      }
 
+      callback();
+    }
   },
 
   render: function() {

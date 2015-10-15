@@ -5,16 +5,21 @@ var Dispatcher = require('../dispatcher/appDispatcher.js'),
     ActionTypes = require('../constants/actionTypes.js');
 
 var LoginActions = {
-  login: function(username, password) {
-    var token = stubApi.login(username, password);
+  login: function(args) {
+    var token = stubApi.login(args, function(error, data) {
+      if (error) {
+        Dispatcher.dispatch({
+          actionType: ActionTypes.LOGIN_ERROR,
+          error: error
+        });
 
-    if (!token) {
-      return;
-    }
+        return;
+      }
 
-    Dispatcher.dispatch({
-      actionType: ActionTypes.LOGIN_GOOD,
-      token: token
+      Dispatcher.dispatch({
+        actionType: ActionTypes.LOGIN_GOOD,
+        token: data.token
+      });
     });
   }
 };
