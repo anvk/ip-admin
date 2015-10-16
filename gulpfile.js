@@ -56,6 +56,11 @@ gulp.task('html', function() {
 });
 
 gulp.task('js', function() {
+
+  // TODO: maybe it would be nice to add this lib as part of the bundle.js
+  gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js')
+    .pipe(gulp.dest(config.paths.dist + '/scripts'));
+
   browserify(config.paths.mainJs) // browserify all JS files
     .transform(reactify)  // use reactify on every JS (compiling JSX)
     .bundle() // bundle. put all into 1 file

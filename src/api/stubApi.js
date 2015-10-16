@@ -14,10 +14,14 @@ var mongoStub = {
     if (result >= 0) {
       var token = data.users[result]._id; // just push userid into sessions for now
       data.sessions.push(token);
-      return callback(undefined, {token: token});
+      return callback(undefined, {token: token, user: data.users[result]});
     }
 
     callback('not authorized');
+  },
+
+  logout: function(args, callback) {
+    callback();
   }
 };
 

@@ -7,5 +7,6 @@ module.exports = keyMirror({
 
   // login related
   LOGIN_GOOD: null,
-  LOGIN_ERROR: null
+  LOGIN_ERROR: null,
+  LOGOUT: null
 });
