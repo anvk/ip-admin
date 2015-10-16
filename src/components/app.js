@@ -12,7 +12,11 @@ var App = React.createClass({
 
   getInitialState: function() {
     return {
-      loggedin: false
+      loggedin: false,
+      user: {
+        firstName: '',
+        lastName: ''
+      }
     };
   },
 
@@ -25,13 +29,13 @@ var App = React.createClass({
   },
 
   _onChange: function() {
-    this.setState({ loggedin: LoginStore.isLoggedIn() });
+    this.setState({ loggedin: LoginStore.isLoggedIn(), user: LoginStore.getUser() });
   },
 
   render: function() {
     return (
       <div>
-        { this.state.loggedin ? <Header /> : null }
+        { this.state.loggedin ? <Header user={this.state.user}/> : null }
         <div className="container-fluid">
           <RouteHandler />
         </div>

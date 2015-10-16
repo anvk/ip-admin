@@ -43,7 +43,6 @@ var LoginPage = React.createClass({
     var error = LoginStore.getError();
 
     if (error) {
-      debugger;
       this.setState({
         errors: {
           api: error
@@ -85,16 +84,16 @@ var LoginPage = React.createClass({
     return (
       <form className="form-login">
         <h2 className="form-login-heading">Please log in</h2>
-        <label for="inputEmail" className="sr-only">Email address</label>
+        <label htmlFor="inputEmail" className="sr-only">Email address</label>
         <input id="inputEmail" name="inputEmail" className="form-control" placeholder="Email address" required="" autofocus="" type="email" value={this.state.credentials.inputEmail} onChange={this.setLoginState}></input>
-        <label for="inputPassword" className="sr-only">Password</label>
+        <label htmlFor="inputPassword" className="sr-only">Password</label>
         <input id="inputPassword" name="inputPassword" className="form-control" placeholder="Password" required="" type="password" value={this.state.credentials.inputPassword} onChange={this.setLoginState}></input>
         <div className="checkbox">
           <label>
             <input value="remember-me" type="checkbox"></input> Remember me
           </label>
         </div>
-        <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.login}>Log In</button>
+        <button className='btn btn-lg btn-primary btn-block' type="submit" onClick={this.login}>Log In</button>
       </form>
     );
   }

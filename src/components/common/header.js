@@ -2,9 +2,14 @@
 
 var React = require('react'),
     Router = require('react-router'),
+    UserLinks = require('../userLinks/userLinks.js'),
     Link = Router.Link;
 
 var Header = React.createClass({
+  propTypes: {
+    user: React.PropTypes.object.isRequired
+  },
+
   render: function() {
     return (
       <nav className="navbar navbar-default">
@@ -16,6 +21,8 @@ var Header = React.createClass({
             <li><Link to="app">Home</Link></li>
             <li><Link to="about">About</Link></li>
           </ul>
+          <UserLinks
+            user = {this.props.user} />
         </div>
       </nav>
     );

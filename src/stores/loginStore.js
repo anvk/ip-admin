@@ -27,6 +27,10 @@ var LoginStore = assign({}, EventEmitter.prototype, {
 
   getError: function() {
     return _loginData.error;
+  },
+
+  getUser: function() {
+    return _loginData.user;
   }
 });
 
@@ -34,11 +38,18 @@ Dispatcher.register(function(action) {
   switch(action.actionType) {
     case ActionTypes.LOGIN_GOOD:
       _loginData.error = undefined;
-      _loginData.token = action.token;
+      _loginData = {
+        token: action.token,
+        user: action.user
+      };
       LoginStore.emitChange();
       break;
     case ActionTypes.LOGIN_ERROR:
       _loginData.error = action.error;
+      LoginStore.emitChange();
+      break;
+    case ActionTypes.LOGOUT:
+      _loginData = {};
       LoginStore.emitChange();
       break;
     default:

@@ -18,8 +18,15 @@ var LoginActions = {
 
       Dispatcher.dispatch({
         actionType: ActionTypes.LOGIN_GOOD,
-        token: data.token
+        token: data.token,
+        user: data.user
       });
+    });
+  },
+
+  logout: function() {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.LOGOUT
     });
   }
 };
