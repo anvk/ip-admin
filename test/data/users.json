@@ -1,0 +1,3 @@
+{"_id":{"$oid":"562054e365ae3398ca2be04a"},"admin":true,"email":"admin@gmail.com","enabled":true,"firstName":"","groups":[],"lastName":"","nickname":"","password":"admin"}
+{"_id":{"$oid":"5620550165ae3398ca2be04b"},"admin":false,"email":"user1@gmail.com","enabled":true,"firstName":"","groups":[],"lastName":"","nickname":"","password":"user1"}
+{"_id":{"$oid":"5620551365ae3398ca2be04c"},"admin":false,"email":"user2@gmail.com","enabled":true,"firstName":"","groups":[],"lastName":"","nickname":"","password":"user2"}

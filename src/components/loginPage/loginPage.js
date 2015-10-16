@@ -43,7 +43,6 @@ var LoginPage = React.createClass({
     var error = LoginStore.getError();
 
     if (error) {
-      debugger;
       this.setState({
         errors: {
           api: error
