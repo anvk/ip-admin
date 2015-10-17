@@ -70,17 +70,20 @@ gulp.task('js', function() {
     .pipe(connect.reload());  // reload browser
 });
 
-gulp.task('less', function () {
+gulp.task('less', function() {
+  // TODO: maybe it is a better way to build LESS without intermediatery
+  // folder which we also had to add to .gitignore
   return gulp.src(config.paths.less)
     .pipe(less())
     .pipe(concat('components.css'))
     .pipe(gulp.dest(config.paths.componentsCss));
 });
 
-gulp.task('css', function() {
+gulp.task('compile_css', ['less'], function() {
   gulp.src(config.paths.css)
     .pipe(concat('bundle.css'))
-    .pipe(gulp.dest(config.paths.dist + '/css'));
+    .pipe(gulp.dest(config.paths.dist + '/css'))
+    .pipe(connect.reload());
 });
 
 gulp.task('images', function() {
@@ -102,7 +105,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
   gulp.watch(config.paths.html, ['html']);
   gulp.watch(config.paths.js, ['js', 'lint']);
-  gulp.watch(config.paths.less, ['less']);
+  gulp.watch(config.paths.less, ['compile_css']);
 });
 
-gulp.task('default', ['html', 'js', 'less', 'css', 'images', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'compile_css', 'images', 'lint', 'open', 'watch']);

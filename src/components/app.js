@@ -3,7 +3,8 @@
 $ = jQuery = require('jquery');
 
 var React = require('react'),
-    Header = require('./common/header.js'),
+    Header = require('./header/header.js'),
+    SideBar = require('./sideBar/sideBar.js'),
     LoginStore = require('../stores/loginStore.js'),
     LoginPage = require('./loginPage/loginPage.js'),
     RouteHandler = require('react-router').RouteHandler;
@@ -33,11 +34,26 @@ var App = React.createClass({
   },
 
   render: function() {
+
+    // if user is not loggedin then show basic login page
+    if (!this.state.loggedin) {
+      return (
+        <div>
+          <RouteHandler />
+        </div>
+      );
+    }
+
     return (
       <div>
-        { this.state.loggedin ? <Header user={this.state.user}/> : null }
-        <div className="container-fluid">
-          <RouteHandler />
+        <Header user={this.state.user}/>
+        <div className='container-fluid'>
+          <div className='col-md-4'>
+            <SideBar />
+          </div>
+          <div className='col-md-8'>
+            <RouteHandler />
+          </div>
         </div>
       </div>
     );

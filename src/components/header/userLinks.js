@@ -27,7 +27,7 @@ var UserLinks = React.createClass({
     return (
       <ul className='nav navbar-nav navbar-right'>
         <li className='dropdown'>
-          <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span className='caret'></span></a>
+          <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>User<span className='caret'></span></a>
           <ul className='dropdown-menu'>
             <li className='disabled'><a href='#'>Signed in as {this.props.user.firstName} {this.props.user.lastName}</a></li>
             <li role='separator' className='divider'></li>
