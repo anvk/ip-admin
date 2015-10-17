@@ -1,15 +1,14 @@
 'use strict';
 
 var Dispatcher = require('../dispatcher/appDispatcher.js'),
-    UserStore = require('./userStore.js'),
     ActionTypes = require('../constants/actionTypes.js'),
     EventEmitter = require('events').EventEmitter,
     assign = require('object-assign'),
     CHANGE_EVENT = 'change';
 
-var _loginData = {};
+var _user = {};
 
-var LoginStore = assign({}, EventEmitter.prototype, {
+var UserStore = assign({}, EventEmitter.prototype, {
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
@@ -22,32 +21,20 @@ var LoginStore = assign({}, EventEmitter.prototype, {
     this.emit(CHANGE_EVENT);
   },
 
-  isLoggedIn: function() {
-    return !!_loginData.token;
-  },
-
-  getError: function() {
-    return _loginData.error;
+  getUser: function() {
+    return _user;
   }
 });
 
-LoginStore.dispatchToken = Dispatcher.register(function(action) {
+UserStore.dispatchToken = Dispatcher.register(function(action) {
   switch(action.actionType) {
     case ActionTypes.LOGIN_GOOD:
-      _loginData = {
-        token: action.token
-      };
-      LoginStore.emitChange();
-      break;
-    case ActionTypes.LOGIN_ERROR:
-      _loginData = {
-        error: action.error
-      };
-      LoginStore.emitChange();
+      _user = action.user;
+      UserStore.emitChange();
       break;
     case ActionTypes.LOGOUT:
-      _loginData = {};
-      LoginStore.emitChange();
+      _user = {};
+      UserStore.emitChange();
       break;
     default:
       // nothing to do
@@ -55,4 +42,6 @@ LoginStore.dispatchToken = Dispatcher.register(function(action) {
   }
 });
 
-module.exports = LoginStore;
+debugger;
+
+module.exports = UserStore;

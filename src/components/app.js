@@ -6,6 +6,7 @@ var React = require('react'),
     Header = require('./header/header.js'),
     SideBar = require('./sideBar/sideBar.js'),
     LoginStore = require('../stores/loginStore.js'),
+    UserStore = require('../stores/UserStore.js'),
     LoginPage = require('./loginPage/loginPage.js'),
     RouteHandler = require('react-router').RouteHandler;
 
@@ -22,15 +23,15 @@ var App = React.createClass({
   },
 
   componentWillMount: function() {
-    LoginStore.addChangeListener(this._onChange);
+    LoginStore.addChangeListener(this._onChangeLogin);
   },
 
   componentWillUnmount: function() {
-    LoginStore.removeChangeListener(this._onChange);
+    LoginStore.removeChangeListener(this._onChangeLogin);
   },
 
-  _onChange: function() {
-    this.setState({ loggedin: LoginStore.isLoggedIn(), user: LoginStore.getUser() });
+  _onChangeLogin: function() {
+    this.setState({ loggedin: LoginStore.isLoggedIn(), user: UserStore.getUser() });
   },
 
   render: function() {

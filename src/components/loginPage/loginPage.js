@@ -25,8 +25,8 @@ var LoginPage = React.createClass({
     return {
       errors: {},
       credentials: {
-        inputEmail: 'admin@gmail.com',
-        inputPassword: 'admin'
+        inputEmail: 'SarahConnor@gmail.com',
+        inputPassword: 'SarahConnor'
       }
     };
   },
