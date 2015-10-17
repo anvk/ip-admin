@@ -34,6 +34,8 @@ var LoginStore = assign({}, EventEmitter.prototype, {
 LoginStore.dispatchToken = Dispatcher.register(function(action) {
   switch(action.actionType) {
     case ActionTypes.LOGIN_GOOD:
+      Dispatcher.waitFor([UserStore.dispatchToken]);
+
       _loginData = {
         token: action.token
       };
