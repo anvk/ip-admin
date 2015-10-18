@@ -13,7 +13,7 @@ module.exports = {
         "nickname" : "",
         "admin" : true,
         "enabled" : true,
-        "accessList" : ["SkyNet-group", "Resistance-group"]
+        "groups" : ["SkyNet-group", "Resistance-group"]
     },
 
     /* 2 */
@@ -26,7 +26,7 @@ module.exports = {
         "nickname" : "",
         "admin" : false,
         "enabled" : true,
-        "accessList" : ["Resistance-group"]
+        "groups" : ["Resistance-group"]
     },
 
     /* 3 */
@@ -39,7 +39,7 @@ module.exports = {
         "nickname" : "",
         "admin" : true,
         "enabled" : true,
-        "accessList" : ["Resistance-group"]
+        "groups" : ["Resistance-group"]
     },
 
     /* 4 */
@@ -52,7 +52,7 @@ module.exports = {
         "nickname" : "",
         "admin" : false,
         "enabled" : true,
-        "accessList" : ["SkyNet-group"]
+        "groups" : ["SkyNet-group"]
     },
 
     /* 5 */
@@ -65,7 +65,7 @@ module.exports = {
         "nickname" : "",
         "admin" : false,
         "enabled" : true,
-        "accessList" : ["SkyNet-group"]
+        "groups" : ["SkyNet-group"]
     }
   ],
   groups: [

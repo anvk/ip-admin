@@ -6,7 +6,7 @@ var React = require('react'),
     Header = require('./header/header.js'),
     SideBar = require('./sideBar/sideBar.js'),
     LoginStore = require('../stores/loginStore.js'),
-    UserStore = require('../stores/UserStore.js'),
+    UserStore = require('../stores/userStore.js'),
     LoginPage = require('./loginPage/loginPage.js'),
     RouteHandler = require('react-router').RouteHandler;
 
@@ -16,8 +16,15 @@ var App = React.createClass({
     return {
       loggedin: false,
       user: {
-        firstName: '',
-        lastName: ''
+        _id : '',
+        email : '',
+        password : '',
+        firstName : '',
+        lastName : '',
+        nickname : '',
+        admin : undefined,
+        enabled : undefined,
+        groups : []
       }
     };
   },
@@ -31,7 +38,10 @@ var App = React.createClass({
   },
 
   _onChangeLogin: function() {
-    this.setState({ loggedin: LoginStore.isLoggedIn(), user: UserStore.getUser() });
+    this.setState({
+      loggedin: LoginStore.isLoggedIn(),
+      user: UserStore.getUser()
+    });
   },
 
   render: function() {
@@ -50,7 +60,8 @@ var App = React.createClass({
         <Header user={this.state.user}/>
         <div className='container-fluid'>
           <div className='col-md-4'>
-            <SideBar />
+            <SideBar
+              groups={this.state.user.groups} />
           </div>
           <div className='col-md-8'>
             <RouteHandler />

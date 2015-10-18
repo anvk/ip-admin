@@ -8,7 +8,8 @@ var mongoStub = {
     args = args || {};
 
     var result = _.findIndex(data.users, function(user) {
-      return user.email === args.email && user.password === args.password;
+      return user.email === args.email && user.password === args.password &&
+        user.enabled;
     });
 
     if (result >= 0) {
@@ -22,6 +23,13 @@ var mongoStub = {
 
   logout: function(args, callback) {
     callback();
+  },
+
+  getGroup: function(args, callback) {
+    args = args || {};
+
+    return callback(undefined,
+      _.findWhere(data.groups, { _id: args._id, enabled: true }));
   }
 };
 

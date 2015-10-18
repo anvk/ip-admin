@@ -1,8 +1,8 @@
 'use strict';
 
 var Dispatcher = require('../dispatcher/appDispatcher.js'),
-    UserStore = require('./userStore.js'),
     ActionTypes = require('../constants/actionTypes.js'),
+    UserStore = require('./userStore.js'),
     EventEmitter = require('events').EventEmitter,
     assign = require('object-assign'),
     CHANGE_EVENT = 'change';
@@ -34,8 +34,9 @@ var LoginStore = assign({}, EventEmitter.prototype, {
 LoginStore.dispatchToken = Dispatcher.register(function(action) {
   switch(action.actionType) {
     case ActionTypes.LOGIN_GOOD:
+      // wait for UserStore to fire first
       Dispatcher.waitFor([UserStore.dispatchToken]);
-
+      debugger;
       _loginData = {
         token: action.token
       };
