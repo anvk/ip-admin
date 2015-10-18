@@ -6,6 +6,7 @@ var React = require('react'),
     Header = require('./header/header.js'),
     SideBar = require('./sideBar/sideBar.js'),
     LoginStore = require('../stores/loginStore.js'),
+    UserStore = require('../stores/userStore.js'),
     LoginPage = require('./loginPage/loginPage.js'),
     RouteHandler = require('react-router').RouteHandler;
 
@@ -15,22 +16,32 @@ var App = React.createClass({
     return {
       loggedin: false,
       user: {
-        firstName: '',
-        lastName: ''
+        _id : '',
+        email : '',
+        password : '',
+        firstName : '',
+        lastName : '',
+        nickname : '',
+        admin : undefined,
+        enabled : undefined,
+        groups : []
       }
     };
   },
 
   componentWillMount: function() {
-    LoginStore.addChangeListener(this._onChange);
+    LoginStore.addChangeListener(this._onChangeLogin);
   },
 
   componentWillUnmount: function() {
-    LoginStore.removeChangeListener(this._onChange);
+    LoginStore.removeChangeListener(this._onChangeLogin);
   },
 
-  _onChange: function() {
-    this.setState({ loggedin: LoginStore.isLoggedIn(), user: LoginStore.getUser() });
+  _onChangeLogin: function() {
+    this.setState({
+      loggedin: LoginStore.isLoggedIn(),
+      user: UserStore.getUser()
+    });
   },
 
   render: function() {
@@ -49,7 +60,8 @@ var App = React.createClass({
         <Header user={this.state.user}/>
         <div className='container-fluid'>
           <div className='col-md-4'>
-            <SideBar />
+            <SideBar
+              groups={this.state.user.groups} />
           </div>
           <div className='col-md-8'>
             <RouteHandler />

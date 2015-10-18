@@ -3,13 +3,21 @@
 var React = require('react');
 
 var SideBar = React.createClass({
+  propTypes: {
+    groups: React.PropTypes.array.isRequired
+  },
+
   render: function() {
+    var createGroupItem = function(group) {
+      return (
+        <li key={group._id}>{group.name}</li>
+      );
+    };
+
     return (
       <div className='sideBar'>
         <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
+          {this.props.groups.map(createGroupItem, this)}
         </ul>
       </div>
     );
