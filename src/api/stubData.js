@@ -83,6 +83,14 @@ module.exports = {
         "name" : "Resistance",
         "enabled" : true,
         "subnets" : []
+    },
+
+    /* 3 */
+    {
+        "_id": "Extra-group",
+        "name" : "Extra",
+        "enabled" : false,
+        "subnets" : []
     }
   ],
   subnets: [

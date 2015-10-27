@@ -30,6 +30,10 @@ var mongoStub = {
 
     return callback(undefined,
       _.findWhere(data.groups, { _id: args._id, enabled: true }));
+  },
+
+  getAllGroups: function(args, callback) {
+    return callback(undefined, data.groups);
   }
 };
 

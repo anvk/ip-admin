@@ -12,14 +12,15 @@ var Header = React.createClass({
 
   render: function() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <Link to="app" className="navbar-brand">
-            <img src="images/logo.png" />
+      <nav className='navbar navbar-default'>
+        <div className='container-fluid'>
+          <Link to='app' className='navbar-brand'>
+            <img src='images/logo.png' />
           </Link>
-          <ul className="nav navbar-nav">
-            <li><Link to="app">Home</Link></li>
-            <li><Link to="about">About</Link></li>
+          <ul className='nav navbar-nav'>
+            <li><Link to='app'>Home</Link></li>
+            { this.props.user.admin ? <li><Link to='groups'>Manage Groups</Link></li> : ''}
+            <li><Link to='about'>About</Link></li>
           </ul>
           <UserLinks
             user = {this.props.user} />

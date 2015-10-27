@@ -28,6 +28,13 @@ var LoginActions = {
           token: data.token,
           user: data.user
         });
+
+        stubApi.getAllGroups(undefined, function(error, data) {
+          Dispatcher.dispatch({
+            actionType: ActionTypes.LOGIN_ADMIN,
+            groups: data
+          });
+        });
       };
 
       _ids.forEach(function(_id) {

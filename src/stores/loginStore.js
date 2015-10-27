@@ -36,7 +36,6 @@ LoginStore.dispatchToken = Dispatcher.register(function(action) {
     case ActionTypes.LOGIN_GOOD:
       // wait for UserStore to fire first
       Dispatcher.waitFor([UserStore.dispatchToken]);
-      debugger;
       _loginData = {
         token: action.token
       };

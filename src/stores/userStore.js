@@ -33,7 +33,6 @@ var UserStore = assign({}, EventEmitter.prototype, {
 UserStore.dispatchToken = Dispatcher.register(function(action) {
   switch(action.actionType) {
     case ActionTypes.LOGIN_GOOD:
-      debugger;
       _user = action.user;
       UserStore.emitChange();
       break;
